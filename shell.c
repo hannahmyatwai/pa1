@@ -249,12 +249,90 @@ int shellExecuteInput(char **args)
   /** TASK 3 **/
 
   // 1. Check if args[0] is NULL. If it is, an empty command is entered, return 1
+  if (args[0] == NULL){
+  	return 1;
+  }
   // 2. Otherwise, check if args[0] is in any of our builtin_commands, and that it is NOT cd, help, exit, or usage.
-  // 3. If conditions in (2) are satisfied, perform fork(). Check if fork() is successful.
-  // 4. For the child process, execute the appropriate functions depending on the command in args[0]. Pass char ** args to the function.
-  // 5. For the parent process, wait for the child process to complete and fetch the child's return value.
-  // 6. Return the child's return value to the caller of shellExecuteInput
-  // 7. If args[0] is not in builtin_command, print out an error message to tell the user that command doesn't exist and return 1
+  else{
+  	if (strcmp(args[0], builtin_commands[0])){
+  		shellCD(args);
+  	}
+  	else if (strcmp(args[0], builtin_commands[1])){
+  		shellHelp(args);
+  	}
+  	else if (strcmp(args[0], builtin_commands[2])){
+  		shellExit(args);
+  	}
+  	else if (strcmp(args[0], builtin_commands[3])){
+  		shellUsage(args);
+  	}
+  	// 3. If conditions in (2) are satisfied, perform fork(). Check if fork() is successful.
+  	else{
+  		int value = 0;
+  		int *stat_loc = malloc(sizeof(int));
+  		pid_t pid = fork();
+  		if (pid < 0){
+  			return 1;
+  		}
+  		else if (pid == 0){
+  			//child creation sucessful
+  			printf("Child creation success.\n");
+  			// 4. For the child process, execute the appropriate functions depending on the command in args[0]. Pass char ** args to the function.
+  			if (strcmp(args[0], builtin_commands[4])){
+  				value = shellDisplayFile(args);
+  				exit(1);
+  			}
+  			else if (strcmp(args[0], builtin_commands[5])){
+  				value = shellCountLine(args);
+  				exit(1);
+  			}
+  			else if (strcmp(args[0], builtin_commands[6])){
+  				value = shellListDir(args);
+  				exit(1);
+  			}
+  			else if (strcmp(args[0], builtin_commands[7])){
+  				value = shellListDirAll(args);
+  				exit(1);
+  			}
+  			else if (strcmp(args[0], builtin_commands[8])){
+  				value = shellFind(args);
+  				exit(1);
+  			}
+  			else if (strcmp(args[0], builtin_commands[9])){
+  				value = shellSummond(args);
+  				exit(1);
+  			}
+  			else if (strcmp(args[0], builtin_commands[10])){
+  				value = shellCheckDaemon(args);
+  				exit(1);
+  			}
+  			else{
+  			// 7. If args[0] is not in builtin_command, print out an error message to tell the user that command doesn't exist and return 1
+  				printf("Command doesn't exist.\n");
+  				return 1;
+  			
+  			}
+  		}
+  			
+  		else{
+  		// 5. For the parent process, wait for the child process to complete and fetch the child's return value.
+  		// 6. Return the child's return value to the caller of shellExecuteInput
+  			pid_t childpid = waitpid(pid, &stat_loc, WUNTRACED);
+  			if (childpid == pid){
+  				printf("pid is %u\n", pid);
+  				printf("printing return value %i\n", value);
+  			}
+  			return 1;
+  	
+  		}
+  	}
+  }
+ 
+  
+  
+  
+  
+  
 
   return 1;
 }
@@ -268,9 +346,9 @@ char *shellReadLine(void)
   // read one line from stdin using getline()
 
   // 1. Allocate a memory space to contain the string of input from stdin using malloc. Malloc should return a char* that persists even after this function terminates.
-  char *buffer = malloc(sizeof(char *) *10));
+  char *buffer = malloc(sizeof(char *) * 10);
   size_t size = 32;
-  size_t characters;
+
   // 2. Check that the char* returned by malloc is not NULL
   if (buffer == NULL){
   	  perror("Unable to allocate buffer");
@@ -278,13 +356,15 @@ char *shellReadLine(void)
   }
   // 3. Fetch an entire line from input stream stdin using getline() function. getline() will store user input onto the memory location allocated in (1)
   else{
-  	  characters = getline(&buffer, &size, stdin);
+  	  getline(&buffer, &size, stdin);
+  	  return buffer;
   }
-  free(buffer);
+  	free(buffer);
   // 4. Return the char*
 
-  return characters;
+  return NULL;
 }
+
 
 /**
  Receives the *line, and return char** that tokenize the line
@@ -335,8 +415,8 @@ int main(int argc, char **argv)
 
   printf("Shell Run successful. Running now: \n");
 
-  // Run command loop
-  shellLoop();
-
+  char* line = shellReadLine();
+  printf("The fetched line is : %s \n", line);
+  
   return 0;
 }

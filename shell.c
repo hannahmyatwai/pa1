@@ -374,12 +374,38 @@ char **shellTokenizeInput(char *line)
 {
 
   /** TASK 2 **/
+  
+  
+
+
   // 1. Allocate a memory space to contain pointers (addresses) to the first character of each word in *line. Malloc should return char** that persists after the function terminates.
   // 2. Check that char ** that is returend by malloc is not NULL
-  // 3. Tokenize the *line using strtok() function
-  // 4. Return the char **
+  char * token_shell_input_delim = SHELL_INPUT_DELIM;
+  char **token_positions=malloc(sizeof(char *)*SHELL_BUFFERSIZE);
 
-  return NULL;
+
+// 3. Tokenize the *line using strtok() function
+  char *token = strtok(line, token_shell_input_delim);
+  int index = 0;
+  //lorem-ipsum-dolor-sit-amet
+  token_positions[index] = token;
+  index++;
+
+  while (token != NULL){
+    
+    token = strtok(NULL, token_shell_input_delim);
+    token_positions[index] = token;
+    index++;
+  }
+
+  token_positions[index] = NULL;
+  for (i = 0; i < index-1; i++){
+	printf("token %i is: %s, it is at address %0x \n", token_positions[i], token_positions[i+1]);  
+  
+  // 4. Return the char ** 
+  return token_positions;
+
+  
 }
 
 /**

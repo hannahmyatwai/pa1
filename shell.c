@@ -254,17 +254,18 @@ int shellExecuteInput(char **args)
   }
   // 2. Otherwise, check if args[0] is in any of our builtin_commands, and that it is NOT cd, help, exit, or usage.
   else{
-  	if (strcmp(args[0], builtin_commands[0])){
-  		shellCD(args);
+  	//printf("hello it's here");
+  	if (strcmp(args[0], builtin_commands[0]) == 0){
+  		return shellCD(args);
   	}
-  	else if (strcmp(args[0], builtin_commands[1])){
-  		shellHelp(args);
+  	if (strcmp(args[0], builtin_commands[1]) == 0){
+  		return shellHelp(args);
   	}
-  	else if (strcmp(args[0], builtin_commands[2])){
-  		shellExit(args);
+  	if (strcmp(args[0], builtin_commands[2]) == 0){
+  		return shellExit(args);
   	}
-  	else if (strcmp(args[0], builtin_commands[3])){
-  		shellUsage(args);
+  	if (strcmp(args[0], builtin_commands[3]) == 0){
+  		return shellUsage(args);
   	}
   	// 3. If conditions in (2) are satisfied, perform fork(). Check if fork() is successful.
   	else{
@@ -272,37 +273,37 @@ int shellExecuteInput(char **args)
   		int *stat_loc = malloc(sizeof(int));
   		pid_t pid = fork();
   		if (pid < 0){
-  			return 1;
+  			printf("Child creation failed\n");
   		}
   		else if (pid == 0){
   			//child creation sucessful
   			printf("Child creation success.\n");
   			// 4. For the child process, execute the appropriate functions depending on the command in args[0]. Pass char ** args to the function.
-  			if (strcmp(args[0], builtin_commands[4])){
+  			if (strcmp(args[0], builtin_commands[4])== 0){
   				value = shellDisplayFile(args);
   				exit(1);
   			}
-  			else if (strcmp(args[0], builtin_commands[5])){
+  			else if (strcmp(args[0], builtin_commands[5])==0){
   				value = shellCountLine(args);
   				exit(1);
   			}
-  			else if (strcmp(args[0], builtin_commands[6])){
+  			else if (strcmp(args[0], builtin_commands[6])==0){
   				value = shellListDir(args);
   				exit(1);
   			}
-  			else if (strcmp(args[0], builtin_commands[7])){
+  			else if (strcmp(args[0], builtin_commands[7])==0){
   				value = shellListDirAll(args);
   				exit(1);
   			}
-  			else if (strcmp(args[0], builtin_commands[8])){
+  			else if (strcmp(args[0], builtin_commands[8])==0){
   				value = shellFind(args);
   				exit(1);
   			}
-  			else if (strcmp(args[0], builtin_commands[9])){
+  			else if (strcmp(args[0], builtin_commands[9])==0){
   				value = shellSummond(args);
   				exit(1);
   			}
-  			else if (strcmp(args[0], builtin_commands[10])){
+  			else if (strcmp(args[0], builtin_commands[10])==0){
   				value = shellCheckDaemon(args);
   				exit(1);
   			}
@@ -397,10 +398,8 @@ char **shellTokenizeInput(char *line)
     token_positions[index] = token;
     index++;
   }
-
+  
   token_positions[index] = NULL;
-  for (i = 0; i < index-1; i++){
-	printf("token %i is: %s, it is at address %0x \n", token_positions[i], token_positions[i+1]);  
   
   // 4. Return the char ** 
   return token_positions;
@@ -445,6 +444,7 @@ void shellLoop(void)
 		//exit the shell
 		break;
 	}
+	}
 
 }
 
@@ -456,5 +456,9 @@ int main(int argc, char **argv)
   char* line = shellReadLine();
   printf("The fetched line is : %s \n", line);
   
+  char** args = shellTokenizeInput(line);
+  printf("The first token is %s \n", args[0]);
+  printf("The second token is %s \n", args[1]);
+  shellExecuteInput(args);
   return 0;
 }

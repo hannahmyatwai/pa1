@@ -396,17 +396,29 @@ void shellLoop(void)
 
   /** TASK 5 **/
   //write a loop where you do the following: 
-
-  // 1. print the message prompt
-  // 2. clear the buffer and move the output to the console using fflush
-  // 3. invoke shellReadLine() and store the output at line
-  // 4. invoke shellTokenizeInput(line) and store the output at args**
-  // 5. execute the tokens using shellExecuteInput(args)
-
-  // 6. free memory location containing the strings of characters
-  // 7. free memory location containing char* to the first letter of each word in the input string
-  // 8. check if shellExecuteInput returns 1. If yes, loop back to Step 1 and prompt user with new input. Otherwise, exit the shell. 
-
+  while (1){
+  	// 1. print the message prompt
+	// 2. clear the buffer and move the output to the console using fflush
+	fflush(stdout);
+	fflush(stdin);
+	printf("CSEShell> ");
+	fflush(stdout);
+	fflush(stdin);
+	// 3. invoke shellReadLine() and store the output at line
+	line = shellReadLine();
+	// 4. invoke shellTokenizeInput(line) and store the output at args**
+	args = shellTokenizeInput(line);
+	// 5. execute the tokens using shellExecuteInput(args)
+	status = shellExecuteInput(args);
+	// 6. free memory location containing the strings of characters
+	free(line);
+	// 7. free memory location containing char* to the first letter of each word in the input string
+	free(args);
+	// 8. check if shellExecuteInput returns 1. If yes, loop back to Step 1 and prompt user with new input. Otherwise, exit the shell. 
+	if (status != 1){
+		//exit the shell
+		break;
+	}
 
 }
 

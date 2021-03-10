@@ -10,12 +10,24 @@ int shellFind(char **args)
 
   /** TASK 4 **/
   // 1. Execute the binary program 'find' in shellPrograms using execvp system call
+  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/find", args);
+
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
-  // 4. Print some kind of error message if it returns -1
-  // 5. return 1 to the caller of shellFind if execvp fails to allow loop to continue
+  if (val==-1){
 
-  return 1;
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
+
+    return 1;
+
+  }
+  
+  else{
+    // 5. return 1 to the caller of shellFind if execvp fails to allow loop to continue
+
+    return 1;
+  }
 }
 
 /**
@@ -26,13 +38,27 @@ int shellDisplayFile(char **args)
   printf("shellDisplayFile is called!\n");
 
   /** TASK 4 **/
+
   // 1. Execute the binary program 'display' in shellPrograms using execvp system call
+  int value = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/display", args);
+
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
-  // 4. Print some kind of error message if it returns -1
-  // 5. return 1 to the caller of shellDisplayFile if execvp fails to allow loop to continue
+  if (val==-1){
 
-  return 1;
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
+
+    return 1;
+
+  }
+  else{
+
+    // 5. return 1 to the caller of shellDisplayFile if execvp fails to allow loop to continue
+    return 1;
+
+  }
+
 }
 
 /*
@@ -44,13 +70,31 @@ int shellListDirAll(char **args)
   printf("shellListDirAll is called!\n");
 
   /** TASK 4 **/
+  
+  
+  
+  
   // 1. Execute the binary program 'listdirall' in shellPrograms using execvp system call
+  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/listdirall", args);
+
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
-  // 4. Print some kind of error message if it returns -1
-  // 5. return 1 to the caller of shellListDirAll if execvp fails to allow loop to continue
+  if (val==-1){
 
-  return 1;
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
+
+    return 1;
+  }
+
+  else{
+    // 5. return 1 to the caller of shellListDirAll if execvp fails to allow loop to continue
+    return 1;
+
+
+  }
+
+  
 }
 
 /*
@@ -61,13 +105,26 @@ int shellListDir(char **args)
   printf("shellListDir is called!\n");
 
   /** TASK 4 **/
+
   // 1. Execute the binary program 'listdir' in shellPrograms using execvp system call
+  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/listdir", args);
+
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
-  // 4. Print some kind of error message if it returns -1
-  // 5. return 1 to the caller of shellListDir
+  if (val==-1){
 
-  return 1;
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
+
+    return 1;
+  }
+
+  else{
+    // 5. return 1 to the caller of shellListDir
+    return 1;
+
+
+  }
 }
 
 /**
@@ -79,13 +136,26 @@ int shellCountLine(char **args)
   printf("shellCountLine is called!\n");
 
   /** TASK 4 **/
+
   // 1. Execute the binary program 'countline' in shellPrograms using execvp system call
+  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/countline", args);
+
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
-  // 4. Print some kind of error message if it returns -1
-  // 5. return 1 to the caller of shellCountLine if execvp fails to allow loop to continue
+  if (val==-1){
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
 
-  return 1;
+    return 1;
+  }
+
+  else{
+    // 5. return 1 to the caller of shellCountLine if execvp fails to allow loop to continue
+    return 1;
+
+
+  }
+  
 }
 
 /**
@@ -96,13 +166,26 @@ int shellSummond(char **args)
   printf("shellDaemonize is called!\n");
 
   /** TASK 4 **/
+  
   // 1. Execute the binary program 'summond' in shellPrograms using execvp system call
+  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/summond", args);
+
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
-  // 4. Print some kind of error message if it returns -1
-  // 5. return 1 to the caller of shellDaemonize if execvp fails to allow loop to continue
+  if (val==-1){
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
 
-  return 1;
+    return 1;
+  }
+
+  else{
+    // 5. return 1 to the caller of shellDaemonize if execvp fails to allow loop to continue
+    return 1;
+
+
+  }
+  
 }
 
 
@@ -115,13 +198,23 @@ int shellCheckDaemon(char **args)
   printf("shellCheckDaemon is called!\n");
 
   /** TASK 4 **/
+
   // 1. Execute the binary program 'checkdaemon' in shellPrograms using execvp system call
+  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/checkdaemon", args);
+
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
-  // 4. Print some kind of error message if it returns -1
-  // 5. return 1 to the caller of shellCheckDaemon if execvp fails to allow loop to continue
+  if (val==-1){
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
 
-  return 1;
+    return 1;
+  }
+
+  else{
+    // 5. return 1 to the caller of shellCheckDaemon if execvp fails to allow loop to continue
+    return 1;
+  }
 }
 
 /**

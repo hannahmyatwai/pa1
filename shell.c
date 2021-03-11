@@ -9,25 +9,24 @@ int shellFind(char **args)
   printf("shellFind is called!\n");
 
   /** TASK 4 **/
-  // 1. Execute the binary program 'find' in shellPrograms using execvp system call
-  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/find", args);
+  
+  // 1. Execute the binary program 'find' in shellPrograms using execvp system call  
+  int val = execvp("/home/myat00/Desktop/ProgrammingAssignment1/PA1/shellPrograms/find", args);
 
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
   if (val==-1){
-
-    // 4. Print some kind of error message if it returns -1
+  // 4. Print some kind of error message if it returns -1
     printf("Error has occurred");
 
     return 1;
-
   }
-  
   else{
     // 5. return 1 to the caller of shellFind if execvp fails to allow loop to continue
 
     return 1;
   }
+
 }
 
 /**
@@ -37,10 +36,43 @@ int shellDisplayFile(char **args)
 {
   printf("shellDisplayFile is called!\n");
 
+  
   /** TASK 4 **/
 
   // 1. Execute the binary program 'display' in shellPrograms using execvp system call
-  int value = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/display", args);
+  int value = execvp("/home/myat00/Desktop/ProgrammingAssignment1/PA1/shellPrograms/display", args);
+
+  // 2. Check if execvp is successful by checking its return value
+  // 3. A successful execvp never returns, while a failed execvp returns -1
+  if (value ==-1){
+
+    // 4. Print some kind of error message if it returns -1
+    printf("Error has occurred");
+
+    return 1;
+
+  }
+  else{
+
+    // 5. return 1 to the caller of shellDisplayFile if execvp fails to allow loop to continue
+    return 1;
+
+  }
+}
+
+/*
+	List the items in the directory and subdirectory
+*/
+int shellListDirAll(char **args)
+{
+
+  printf("shellListDirAll is called!\n");
+
+  /** TASK 4 **/
+
+
+  // 1. Execute the binary program 'display' in shellPrograms using execvp system call
+  int val = execvp("/home/myat00/Desktop/ProgrammingAssignment1/PA1/shellPrograms/display", args);
 
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
@@ -58,43 +90,7 @@ int shellDisplayFile(char **args)
     return 1;
 
   }
-
-}
-
-/*
-	List the items in the directory and subdirectory
-*/
-int shellListDirAll(char **args)
-{
-
-  printf("shellListDirAll is called!\n");
-
-  /** TASK 4 **/
-  
-  
-  
-  
-  // 1. Execute the binary program 'listdirall' in shellPrograms using execvp system call
-  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/listdirall", args);
-
-  // 2. Check if execvp is successful by checking its return value
-  // 3. A successful execvp never returns, while a failed execvp returns -1
-  if (val==-1){
-
-    // 4. Print some kind of error message if it returns -1
-    printf("Error has occurred");
-
-    return 1;
-  }
-
-  else{
-    // 5. return 1 to the caller of shellListDirAll if execvp fails to allow loop to continue
-    return 1;
-
-
-  }
-
-  
+ 
 }
 
 /*
@@ -107,7 +103,7 @@ int shellListDir(char **args)
   /** TASK 4 **/
 
   // 1. Execute the binary program 'listdir' in shellPrograms using execvp system call
-  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/listdir", args);
+  int val = execvp("/home/myat00/Desktop/ProgrammingAssignment1/PA1/shellPrograms/listdir", args);
 
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
@@ -135,10 +131,11 @@ int shellCountLine(char **args)
 {
   printf("shellCountLine is called!\n");
 
+  
   /** TASK 4 **/
 
   // 1. Execute the binary program 'countline' in shellPrograms using execvp system call
-  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/countline", args);
+  int val = execvp("/home/myat00/Desktop/ProgrammingAssignment1/PA1/shellPrograms/countline", args);
 
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
@@ -155,7 +152,6 @@ int shellCountLine(char **args)
 
 
   }
-  
 }
 
 /**
@@ -168,7 +164,7 @@ int shellSummond(char **args)
   /** TASK 4 **/
   
   // 1. Execute the binary program 'summond' in shellPrograms using execvp system call
-  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/summond", args);
+  int val = execvp("/home/myat00/Desktop/ProgrammingAssignment1/PA1/shellPrograms/summond", args);
 
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
@@ -200,7 +196,7 @@ int shellCheckDaemon(char **args)
   /** TASK 4 **/
 
   // 1. Execute the binary program 'checkdaemon' in shellPrograms using execvp system call
-  int val = execvp("/Users/placid_brain/sch_assgn/ProgrammingAssignment1-master/PA1/shellPrograms/checkdaemon", args);
+  int val = execvp("/home/myat00/Desktop/ProgrammingAssignment1/PA1/shellPrograms/checkdaemon", args);
 
   // 2. Check if execvp is successful by checking its return value
   // 3. A successful execvp never returns, while a failed execvp returns -1
@@ -363,9 +359,9 @@ int shellExecuteInput(char **args)
   	// 3. If conditions in (2) are satisfied, perform fork(). Check if fork() is successful.
   	else{
   		int value = 0;
-  		int *stat_loc = malloc(sizeof(int));
+  		int *status = malloc(sizeof(int));
   		pid_t pid = fork();
-  		if (pid < 0){
+  		if (pid == -1 ){
   			printf("Child creation failed\n");
   		}
   		else if (pid == 0){
@@ -408,14 +404,22 @@ int shellExecuteInput(char **args)
   			}
   		}
   			
-  		else{
+  		else if (pid > 0){
   		// 5. For the parent process, wait for the child process to complete and fetch the child's return value.
   		// 6. Return the child's return value to the caller of shellExecuteInput
-  			pid_t childpid = waitpid(pid, &stat_loc, WUNTRACED);
-  			if (childpid == pid){
+  			pid_t child_pid = waitpid(pid, &status, WUNTRACED);
+  			
+  			
+  			/*
+  			if (waitpid(pid, status, WUNTRACED) == pid){
   				printf("pid is %u\n", pid);
   				printf("printing return value %i\n", value);
+  				return 1;
   			}
+  			else{
+  				return 1;
+  			}
+  			*/
   			return 1;
   	
   		}
@@ -537,7 +541,7 @@ void shellLoop(void)
 		//exit the shell
 		break;
 	}
-	}
+  }
 
 }
 
@@ -545,6 +549,8 @@ int main(int argc, char **argv)
 {
 
   printf("Shell Run successful. Running now: \n");
+  
+  /*
 
   char* line = shellReadLine();
   printf("The fetched line is : %s \n", line);
@@ -553,5 +559,8 @@ int main(int argc, char **argv)
   printf("The first token is %s \n", args[0]);
   printf("The second token is %s \n", args[1]);
   shellExecuteInput(args);
+  */
+  
+  shellLoop();
   return 0;
 }

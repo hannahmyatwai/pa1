@@ -10,10 +10,13 @@ int shellCheckDaemon_code()
    sprintf(command, "ps -efj | grep summond  | grep -v tty > output.txt");
 
    // TODO: Execute the command using system(command) and check its return value
-   int num = system(command);
+   
+   #define true 1
    while(true){
 
-      if(num==-1){
+      
+
+      if(system(command)!=-1){
          break;
       }
 
@@ -23,6 +26,7 @@ int shellCheckDaemon_code()
    int live_daemons = 0;
    // TODO: Analyse the file output.txt, wherever you set it to be. You can reuse your code for countline program
    // 1. Open the file
+   FILE* fil = fopen("output.txt","r");
    // 2. Fetch line by line using getline()
    // 3. Increase the daemon count whenever we encounter a line
    // 4. Close the file
@@ -32,33 +36,34 @@ int shellCheckDaemon_code()
 
    //-------------------------------------------------------- SECOND TODO IS A COPY OF shellCountLine.c-----------------------------------------------------
    ssize_t readfunc;
-   FILE* fp = fopen(args[1],"r");
+   
    char *ptr=NULL;
    size_t size=0;
-   
+   int counter=0;
+    
+    
 
-   if( fp!=NULL ){
-        readfunc = getline(&ptr, &size, fp);
-        while(size>0){
+    // 2. Check if file exists by ensuring that the FILE* fp returned by fopen() is not NULL
+   if( fil!=NULL ){
+        
 
-            counter+=1;
-            readfunc = getline(&ptr, &size, fp);
-
-
+    
+       
+        while((readfunc = getline(&ptr,&size,fil))!=-1){
+            live_daemons+=1;
+            fwrite(ptr, readfunc, 1, stdout);
+            
 
         }
 
-    }
+        
 
-    else{
+   }
+   free(ptr);
+   fclose(fil);
+   printf("Number of daemons present are: %i\n", live_daemons);
 
-        fclose(fp);
-        return 1;
-
-
-
-
-    }
+    
 
 
 
